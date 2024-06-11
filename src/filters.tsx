@@ -15,9 +15,9 @@ interface Item {
 interface Props {
     items: Item[];
     updateFilters: (checked: boolean, selectedItem: Item) => void;
-    setPriceRange: Function;
+    setPriceRange: (range: [number, number]) => void;
     priceRange: number[];
-    setSpsRange: Function;
+    setSpsRange: (range: [number, number]) => void;
     spsRange: number[];
     handleSortByPrice: () => void;
     sortByPrice: string;
@@ -102,11 +102,15 @@ const Filters: React.FC<Props> = ({
                         min={10000}
                         max={300000}
                         defaultValue={[50000, 100000]}
-                        onChange={(value) => {
-                            if (typeof value === "number") {
-                                setPriceRange([value]);
-                            } else {
-                                setPriceRange(value);
+                        onChange={(values) => {
+                            let range: [number, number];
+                            if (Array.isArray(values)) {
+                                if (values.length === 1) {
+                                    range = [values[0], values[0]]; // Установить одинаковые значения в обоих элементах, если задано одно значение
+                                } else {
+                                    range = [values[0], values[1]]; // Использовать оба значения, если заданы оба
+                                }
+                                setPriceRange(range);
                             }
                         }}
                     />
@@ -120,7 +124,7 @@ const Filters: React.FC<Props> = ({
                             type="number"
                             value={priceRange[0]}
                             onChange={(e) =>
-                                setPriceRange([parseInt(e.target.value), priceRange[1]])
+                                setPriceRange([Number(e.target.value), priceRange[1]])
                             }
                         />
                         <span className="postfix">₽</span>
@@ -133,7 +137,7 @@ const Filters: React.FC<Props> = ({
                             type="number"
                             value={priceRange[1]}
                             onChange={(e) =>
-                                setPriceRange([priceRange[0], parseInt(e.target.value)])
+                                setPriceRange([priceRange[0], Number(e.target.value)])
                             }
                         />
                         <span className="postfix">₽</span>
@@ -148,11 +152,15 @@ const Filters: React.FC<Props> = ({
                         min={0}
                         max={110}
                         defaultValue={[5, 90]}
-                        onChange={(value) => {
-                            if (typeof value === "number") {
-                                setSpsRange([value]);
-                            } else {
-                                setSpsRange(value);
+                        onChange={(values) => {
+                            let range: [number, number];
+                            if (Array.isArray(values)) {
+                                if (values.length === 1) {
+                                    range = [values[0], values[0]]; // Установить одинаковые значения в обоих элементах, если задано одно значение
+                                } else {
+                                    range = [values[0], values[1]]; // Использовать оба значения, если заданы оба
+                                }
+                                setSpsRange(range);
                             }
                         }}
                     />
@@ -166,7 +174,7 @@ const Filters: React.FC<Props> = ({
                             type="number"
                             value={spsRange[0]}
                             onChange={(e) =>
-                                setSpsRange([parseInt(e.target.value), spsRange[1]])
+                                setSpsRange([Number(e.target.value), spsRange[1]])
                             }
                         />
                         <span className="postfix">%</span>
@@ -179,7 +187,7 @@ const Filters: React.FC<Props> = ({
                             type="number"
                             value={spsRange[1]}
                             onChange={(e) =>
-                                setSpsRange([spsRange[0], parseInt(e.target.value)])
+                                setSpsRange([spsRange[0], Number(e.target.value)])
                             }
                         />
                         <span className="postfix">%</span>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { isUnique } from "./utils";
 import "rc-slider/assets/index.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,7 +29,6 @@ function App() {
     }
     setCategoryFilters(updatedFilters);
   }
-
 
   const sortedProducts = useMemo(() => {
     const filteredProducts =
