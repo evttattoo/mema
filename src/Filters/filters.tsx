@@ -2,7 +2,7 @@ import React from "react";
 import Multiselect from "multiselect-react-dropdown";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import "./App.css"
+import "./filters.css"
 // import items from "./data.json";
 // import Table  from "./table"
 // import Filters from "./filters"

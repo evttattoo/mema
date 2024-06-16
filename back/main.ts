@@ -16,11 +16,11 @@ interface ProductInfo {
     discount: number;
     finalPrice: number;
 }
-const data: ProductLink[] = require('../front/src/data.json');
+const data: ProductLink[] = require('../src/Files/data.json');
 const allParsedData: ProductInfo[] = [];
 const parse = async (link: string, model: string) => {
     const browser = await puppeteer.launch({
-        headless: "new",
+        headless: false,
         defaultViewport: null,
     });
     const page = await browser.newPage();
@@ -28,7 +28,7 @@ const parse = async (link: string, model: string) => {
     await page.setDefaultNavigationTimeout(0);
     await page.goto(link);
     const info: ProductInfo[] = [];
-
+    
     do {
         const nextPage = await page.evaluate(() => {
             return document.querySelector('li.next') !== null;
@@ -80,7 +80,7 @@ const startParse = async () => {
             await parse(linkss[i].link, linkss[i].model)
         console.log(linkss[i].model + ' was parsed')
     }
-    fs.writeFile('../front/src/result.json', JSON.stringify(allParsedData), 'utf8', function (err) {
+    fs.writeFile('../src/Files/result.json', JSON.stringify(allParsedData), 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }

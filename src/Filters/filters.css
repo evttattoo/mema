@@ -1,0 +1,151 @@
+.filters {
+    max-width: 280px;
+    display: flex;
+    flex-flow: wrap column;
+  }
+  
+  .models {
+    width: 280px;
+  }
+  
+  .selector {
+    display: block;
+    margin-bottom: 10px;
+    width: 280px;
+    background-image: url('../../assets/arrow.svg');
+    background-position: 96% 50%;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
+  
+  .price {
+    border: 0.5px solid rgb(199, 196, 188);
+    padding: 10px 4px;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .slider {
+    margin-left: 25px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    color: #5d3a8e;
+  }
+  
+  .priceHolders {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .priceHolderLabel {
+    border: 1px solid rgb(199, 196, 188);
+    border-radius: 8px;
+    padding: 04px 6px;
+  }
+  
+  .priceHolderInput {
+    width: 78px;
+    margin-left: 8px;
+    color: rgb(59, 58, 55);
+    border: 0px;
+    Outline: 0
+  }
+  
+  .spsHolderInput {
+    width: 72px;
+    margin-left: 8px;
+    color: rgb(59, 58, 55);
+    border: 0px;
+    Outline: 0
+  }
+
+  .prefix {
+    color: rgb(199, 196, 188);
+  }
+  
+  .postfix {
+    color: rgb(199, 196, 188);
+  }
+
+  .sort {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btnSort {
+    width: 30%;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 6px 3px;
+    margin: 0;
+    border: 1px solid rgb(190, 175, 210);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .btnEnabled {
+    background-color: rgb(134, 84, 204);
+    color: #fff;
+  }
+  
+  .rc-slider-track {
+    position: absolute;
+    /* left: 0; */
+    /* right: 100%; */
+    height: 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #8654cc;
+  }
+  
+  .rc-slider-rail {
+    position: absolute;
+    width: 80%;
+    height: 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    margin-right: 100px;
+  }
+  
+  .rc-slider-handle {
+    position: absolute;
+    margin-left: -12px;
+    margin-top: -14px;
+    width: 28px;
+    height: 28px;
+    cursor: grab;
+    border-radius: 50%;
+    border: solid 2px #d7cdd8;
+    background-color: #ffffff !important;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 #0000004d;
+  }
+  
+  .rc-slider:hover .rc-slider-handle:hover {
+    border-color: #d1b8d4;
+  }
+  
+  .chip {
+    background-color: #8654cc;
+  }
+  
+  .selected {
+    background-color: #8654cc;
+  }
+  
+  .highlight {
+    background-color: #8654cc;
+  }
+  
+  .optionListContainer {
+    background-color: #e6e2ec;
+  }
+  

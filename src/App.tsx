@@ -1,12 +1,11 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { isUnique } from "./utils";
+import { isUnique } from "./Utils/utils";
 import "rc-slider/assets/index.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import result from "./result.json";
-import items from "./data.json";
-import Table from "./table"
-import Filters from "./filters"
+import result from "./Files/result.json";
+import items from "./Files/data.json";
+import Table from "./Table/table"
+import Filters from "./Filters/filters"
 
 interface CategoryFilter {
   model: string;
@@ -20,7 +19,7 @@ function App() {
   const [sortByFinal, setSortByFinal] = useState("OFF")
   const [categoryFilters, setCategoryFilters] = useState(new Set());
 
-  function updateFilters(checked: boolean, categoryFilter: CategoryFilter) {
+  const updateFilters = useCallback((checked: boolean, categoryFilter: CategoryFilter) => {
     const updatedFilters = new Set(categoryFilters);
     if (checked) {
       updatedFilters.add(categoryFilter.model);
@@ -28,7 +27,7 @@ function App() {
       updatedFilters.delete(categoryFilter.model);
     }
     setCategoryFilters(updatedFilters);
-  }
+  }, [])
 
   const sortedProducts = useMemo(() => {
     const filteredProducts =
@@ -69,7 +68,7 @@ function App() {
     return [];
   }, [categoryFilters, sortByPrice, sortByDiscount, sortByFinal, priceRange, spsRange]);
 
-  const handleSortByPrice = () => {
+  const handleSortByPrice = useCallback(() => {
     setSortByDiscount("OFF");
     setSortByFinal("OFF")
     setSortByPrice((prevValue) => {
@@ -81,9 +80,9 @@ function App() {
       }
       return "OFF"
     });
-  };
+  }, [])
 
-  const handleSortByDiscount = () => {
+  const handleSortByDiscount = useCallback(() => {
     setSortByPrice("OFF");
     setSortByFinal("OFF")
     setSortByDiscount((prevValue) => {
@@ -95,9 +94,9 @@ function App() {
       }
       return "OFF"
     });
-  };
+  }, [])
 
-  const handleSortByFinal = () => {
+  const handleSortByFinal = useCallback(() => {
     setSortByPrice("OFF");
     setSortByDiscount("OFF");
     setSortByFinal((prevValue) => {
@@ -109,7 +108,7 @@ function App() {
       }
       return "OFF"
     });
-  };
+  }, [])
 
   return (
     <div>

@@ -37,14 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var puppeteer = require("puppeteer");
 var fs = require("fs");
-var data = require('../src/data.json');
+var data = require('../src/Files/data.json');
 var allParsedData = [];
 var parse = function (link, model) { return __awaiter(_this, void 0, void 0, function () {
     var browser, page, info, nextPage, productInfo, _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0: return [4 /*yield*/, puppeteer.launch({
-                    headless: "new",
+                    headless: false,
                     defaultViewport: null,
                 })];
             case 1:
@@ -140,7 +140,7 @@ var startParse = function () { return __awaiter(_this, void 0, void 0, function 
                 i++;
                 return [3 /*break*/, 1];
             case 5:
-                fs.writeFile('../front/src/result.json', JSON.stringify(allParsedData), 'utf8', function (err) {
+                fs.writeFile('../src/Files/result.json', JSON.stringify(allParsedData), 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }

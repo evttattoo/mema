@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Pagination from './pagination';
-
+import "./table.css"
 type Product = {
     link: string;
     info: string;
@@ -24,9 +24,9 @@ const Table: React.FC<TableProps> = ({ sortedProducts }) => {
 
     const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
-    const onPageChange = (pageNumber: number) => {
+    const onPageChange = useCallback((pageNumber: number) => {
         setCurrentPage(pageNumber);
-    };
+    }, [])
     return (
         <div className="items">
             {/* <h2>Таблица товаров:</h2> */}
