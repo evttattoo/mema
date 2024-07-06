@@ -29,6 +29,30 @@ function App() {
     setCategoryFilters(updatedFilters);
   }, [])
 
+  const handleSliderPriceChange = (values: number[] | number) => {
+    let range: [number, number];
+    if (Array.isArray(values)) {
+      if (values.length === 1) {
+        range = [values[0], values[0]];
+      } else {
+        range = [values[0], values[1]];
+      }
+      setPriceRange(range);
+    }
+  };
+
+  const handleSliderSpsChange = (values: number[] | number) => {
+    let range: [number, number];
+    if (Array.isArray(values)) {
+      if (values.length === 1) {
+        range = [values[0], values[0]];
+      } else {
+        range = [values[0], values[1]];
+      }
+      setSpsRange(range);
+    }
+  };
+
   const sortedProducts = useMemo(() => {
     const filteredProducts =
       categoryFilters.size === 0
@@ -128,6 +152,8 @@ function App() {
           sortByDiscount={sortByDiscount}
           handleSortByFinal={handleSortByFinal}
           sortByFinal={sortByFinal}
+          handleSliderPriceChange={handleSliderPriceChange}
+          handleSliderSpsChange={handleSliderSpsChange}
         />
         <Table sortedProducts={sortedProducts} />
       </div>

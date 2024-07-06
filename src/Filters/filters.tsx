@@ -1,31 +1,9 @@
 import React from "react";
 import Multiselect from "multiselect-react-dropdown";
 import Slider from "rc-slider";
+import { Item, Props } from "./types";
 import "rc-slider/assets/index.css";
 import "./filters.css"
-// import items from "./data.json";
-// import Table  from "./table"
-// import Filters from "./filters"
-
-interface Item {
-    link: string;
-    model: string;
-    status: boolean;
-}
-interface Props {
-    items: Item[];
-    updateFilters: (checked: boolean, selectedItem: Item) => void;
-    setPriceRange: (range: [number, number]) => void;
-    priceRange: number[];
-    setSpsRange: (range: [number, number]) => void;
-    spsRange: number[];
-    handleSortByPrice: () => void;
-    sortByPrice: string;
-    handleSortByDiscount: () => void;
-    sortByDiscount: string;
-    handleSortByFinal: () => void;
-    sortByFinal: string;
-}
 
 const Filters: React.FC<Props> = ({
     items,
@@ -39,7 +17,9 @@ const Filters: React.FC<Props> = ({
     handleSortByDiscount,
     sortByDiscount,
     handleSortByFinal,
-    sortByFinal
+    sortByFinal,
+    handleSliderPriceChange,
+    handleSliderSpsChange
 }) => {
     return (
         <div className="filters">
@@ -102,17 +82,7 @@ const Filters: React.FC<Props> = ({
                         min={10000}
                         max={300000}
                         defaultValue={[50000, 100000]}
-                        onChange={(values) => {
-                            let range: [number, number];
-                            if (Array.isArray(values)) {
-                                if (values.length === 1) {
-                                    range = [values[0], values[0]]; // Установить одинаковые значения в обоих элементах, если задано одно значение
-                                } else {
-                                    range = [values[0], values[1]]; // Использовать оба значения, если заданы оба
-                                }
-                                setPriceRange(range);
-                            }
-                        }}
+                        onChange={handleSliderPriceChange}
                     />
                 </div>
                 <div className="priceHolders">
@@ -152,17 +122,7 @@ const Filters: React.FC<Props> = ({
                         min={0}
                         max={110}
                         defaultValue={[5, 90]}
-                        onChange={(values) => {
-                            let range: [number, number];
-                            if (Array.isArray(values)) {
-                                if (values.length === 1) {
-                                    range = [values[0], values[0]]; // Установить одинаковые значения в обоих элементах, если задано одно значение
-                                } else {
-                                    range = [values[0], values[1]]; // Использовать оба значения, если заданы оба
-                                }
-                                setSpsRange(range);
-                            }
-                        }}
+                        onChange={handleSliderSpsChange}
                     />
                 </div>
                 <div className="priceHolders">
@@ -200,18 +160,18 @@ const Filters: React.FC<Props> = ({
                     <button onClick={handleSortByPrice}
                         className={"btnSort " + (sortByPrice === "ASC" ? "btnEnabled" : "btnDisabled")}
                     >
-                        {'Начальной цене'}
+                        Начальной цене
                     </button>
                     <button onClick={handleSortByDiscount}
                         className={"btnSort " + (sortByDiscount === "DESC" ? "btnEnabled" : "btnDisabled")}
                     >
-                        {"Проценту кэшбека"}
+                        Проценту кэшбека
 
                     </button>
                     <button onClick={handleSortByFinal}
                         className={"btnSort " + (sortByFinal === "ASC" ? "btnEnabled" : "btnDisabled")}
                     >
-                        {"Итоговой цене"}
+                        Итоговой цене
                     </button>
                 </div>
             </div>

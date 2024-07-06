@@ -1,19 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Pagination from './pagination';
+import { Product, TableProps } from "./types";
 import "./table.css"
-type Product = {
-    link: string;
-    info: string;
-    price: string;
-    sps: string;
-    model: string;
-    discount: number;
-    finalPrice: number;
-};
-
-type TableProps = {
-    sortedProducts: Product[];
-};
 
 const Table: React.FC<TableProps> = ({ sortedProducts }) => {
     const [currentPage, setCurrentPage] = useState(1);
